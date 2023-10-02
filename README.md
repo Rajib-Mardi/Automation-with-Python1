@@ -34,9 +34,13 @@
   
  * This script connects with AWS in two separate regions, lists EC2 instance IDs in each location, and tags those instances based on their environment (prod or dev). This categorization might be beneficial for organizing and managing AWS resources based on their uses or contexts.
 
+
+### Frankfurt Region:
+
 ![describe_instance_status - Boto3 1 28 51 documentation - Google Chrome 21-09-2023 10_20_20](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/c6452197-b805-4440-8b85-df3b0a09ef8a) 
 
 
+### Paris Region: 
 ![describe_instance_status - Boto3 1 28 51 documentation - Google Chrome 21-09-2023 10_20_36](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/1d4bf127-f3d0-41e7-87c0-798513f58ea1)
 
 
