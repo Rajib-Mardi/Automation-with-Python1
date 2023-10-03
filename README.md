@@ -9,7 +9,7 @@ Project Description:
   ### Write a Python script that automates creating backups for EC2 Volumes
 
 
- *  Create a ec2 instance in aws manually  and tag the name of volume as the "prod". and use pyhon script to create a snapshot out of it
+ *  Create a ec2 instance in aws manually  and tag the name of volume as the "prod" and use pyhon script to create a snapshot out of it
 
 * It creates snapshots of volumes that are tagged with the name "prod." It employs the "schedule" library to schedule and run the volume snapshot creation process at regular intervals.
 
@@ -38,6 +38,11 @@ import schedule: This library is used for task scheduling.
 * ```while True:```: This is an infinite loop that continuously runs.
 * Inside the loop, ```schedule.run_pending()``` is called. This method checks if there are any scheduled tasks (in this case, the ```create_volume_snapshot``` function) that need to be executed. If there are any pending tasks, they are executed.
 
+
+
+![Automation-with-Python – volume-backups py 02-10-2023 23_13_51](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/ad742853-f0d6-490b-b72b-cd2b3ed5f9bc)
+
+ 
 
 ------------------------------------------------------------------
 
@@ -81,6 +86,9 @@ import schedule: This library is used for task scheduling.
   
 
 * This script is a basic form of EBS snapshot management. It identifies EBS volumes tagged as "prod," lists their associated snapshots, sorts the snapshots by their start times, and deletes all but the two most recent snapshots. This can be useful for managing snapshot retention and saving storage costs.
+
+
+![Automation-with-Python – cleanup-snapshots py 02-10-2023 23_20_55](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/20f2b228-b769-4259-b7f9-aeaa4835107d)
 
 
 -----------------------------------------------------------------------------
@@ -137,5 +145,11 @@ import schedule: This library is used for task scheduling.
   
 
 * This script automates the process of establishing a new EBS volume from the most recent snapshot of an existing volume, waiting for the new volume to become available, and attaching it to an EC2 instance. 
+
+
+![Automation-with-Python – restore-volume py 02-10-2023 23_45_03](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/365d8053-f15e-4fa3-b7d3-e240da38743a)
+
+
+![Volumes _ EC2 _ eu-west-3 - Google Chrome 02-10-2023 23_52_22](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/2c6bf65b-3358-4dd7-9143-dbd6ab2ff6ea)
 
 
