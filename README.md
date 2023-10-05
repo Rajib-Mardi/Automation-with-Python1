@@ -42,7 +42,10 @@
 
 * The script then prints the extracted cluster information, including its status, endpoint, and version for each cluster.
 
-
-
-
 * This script lists all Amazon EKS clusters in the "eu-west-3" region, collects detailed information about each cluster, and prints the status, endpoint, and Kubernetes version of each cluster.
+
+
+![Automation-with-Python – eks-status-checks py 21-09-2023 12_21_35](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/eca3489b-6251-454b-b68e-6f6fd24d8a39)
+
+
+
