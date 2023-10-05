@@ -33,3 +33,9 @@
     * The script applies a "dev" environment tag to the instances in the Frankfurt region using the ```create_tags``` method of the ```ec2_resource_frankfurt``` object, similar to what was done for the Paris region.
   
  * This script connects with AWS in two separate regions, lists EC2 instance IDs in each location, and tags those instances based on their environment (prod or dev). This categorization might be beneficial for organizing and managing AWS resources based on their uses or contexts.
+
+![Automation-with-Python – healthCheckEc2 py 21-09-2023 09_34_47](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/d452b562-87a8-436c-a78e-c8f69e808d36)
+
+
+
+
