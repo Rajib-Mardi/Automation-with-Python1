@@ -1,40 +1,48 @@
-### Project: 
-  * Automate configuring EC2 Server Instances
-### Technologiesused:
-  * Python, Boto3, AWS
+### Project:
+  * Website Monitoring and Recovery 
+### Technologiesused: 
+ * Python, Linode, Docker, Linux
 
 ### Project Description:
-* Write a Python script that automates adding environment tags to all EC2 Server instances
+* Create a server on a cloud platform
+
+* Install Docker and run a Docker container on the remote serve
 
 
-1. Import the ```boto3``` Library:
+1. Importing Libraries:
 
-* ```import boto3```: This line imports the Boto3 library, which is necessary for interacting with AWS services.
-2. Create EC2 Clients and Resources for Paris and Frankfurt Regions:
+   * The script starts by importing necessary libraries, including ```requests``` for making HTTP requests, ```smtplib``` for sending email notifications, ```os``` for handling environment variables, ```paramiko``` for SSH connections, ```linode_api4``` for Linode API interactions, ```time``` for time-related operations, and ```schedule``` for scheduling tasks.
+     
+2. Environment Variables:
+   
+   * It retrieves certain sensitive information (email address, email password, and Linode API token) from environment variables, which should be set in the environment where this script runs.
+     
+3. restart_server_and_container() Function:
 
-*  EC2 clients and resources are created, one for the Paris region (eu-west-3) and one for the Frankfurt region (eu-central-1). These clients and resources will be used to interact with EC2 instances in their respective regions.
+  * This function is responsible for restarting both the Linode server and the application container. It performs the following tasks:
+       * Reboots the Linode server using the Linode API. It loads the server with a specific ID (24920590) and calls ```nginx_server.reboot()``` to initiate the reboot.
+       * After initiating the server reboot, it enters a loop that continuously checks the server's status.
+       * Once the server's status becomes 'running,' it sleeps for 5 seconds to allow the server to stabilize and then calls ```restart_container()``` to restart the application container.
+         
+4. send_notification(email_msg) Function:
 
-3. Retrieve Instance IDs in the Paris Region:
+This function sends an email notification using a Gmail SMTP server.
+It requires the Gmail email address and password for authentication.
+restart_container() Function:
 
-  * The script retrieves a list of instance IDs in the Paris region by calling ```describe_instances```  on the ```ec2_client_paris``` object.
-  * It iterates through the reservations and instances to collect the instance IDs in the   ```instance_ids_paris``` list
+This function restarts a Docker container on a remote server using SSH.
+It connects to the server using SSH, starts the Docker container with a specific ID, and prints the output.
+monitor_application() Function:
 
-4. Apply Tags to Instances in the Paris Region:
+This function monitors the web application's availability.
+It sends an HTTP GET request to the specified URL (the web application's address).
+If the response status code is 200 (OK), it prints a message indicating that the application is running successfully.
+If the response status code is not 200, it indicates that the application is down or not working as expected.
+In this case, it sends an email notification with information about the response status code and then calls restart_container() to attempt to restart the application.
+If any exception occurs during the process (e.g., a connection error), it sends an email notification and calls restart_server_and_container() to reboot both the server and the container.
+Scheduling:
 
-    * The script applies a "prod" environment tag to the instances in the Paris region using the ```create_tags``` method of the ```ec2_resource_paris``` object.
-    * The  ```Resources``` parameter specifies the instance IDs to which the tags will be applied.
-
-5. Retrieve Instance IDs in the Frankfurt Region:
-
-    * Similarly, the script retrieves a list of instance IDs in the Frankfurt region using ```describe_instances``` on the  ```ec2_client_frankfurt``` object.
-
-6.  Apply Tags to Instances in the Frankfurt Region:
-
-    * The script applies a "dev" environment tag to the instances in the Frankfurt region using the ```create_tags``` method of the ```ec2_resource_frankfurt``` object, similar to what was done for the Paris region.
-  
- * This script connects with AWS in two separate regions, lists EC2 instance IDs in each location, and tags those instances based on their environment (prod or dev). This categorization might be beneficial for organizing and managing AWS resources based on their uses or contexts.
-
-![Automation-with-Python – healthCheckEc2 py 21-09-2023 09_34_47](https://github.com/Rajib-Mardi/Automation-with-Python1/assets/96679708/72bf8c90-7496-4621-9649-5cfcbfb0c07c)
-
+The script uses the schedule library to schedule the monitor_application() function to run every 5 minutes.
+It enters a loop where schedule.run_pending() is called, which executes any scheduled tasks when their time comes.
 
 
